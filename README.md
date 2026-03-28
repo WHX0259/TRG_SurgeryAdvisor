@@ -99,3 +99,16 @@ python infer_cli.py --orig /path/to/orig.png --mask /path/to/mask.png --out ./ou
 ## 依赖仓库
 
 - 模型定义：`config.yaml` 中的 `pdcc_root`（默认 `/data16t/huixuan/code/PDCC`）下的 `lib/model/CMEL.py` 中 `ImageBaseClusterDistancePlusGatingModel`。
+
+## 推送到 GitHub（安全说明）
+
+1. **不要使用账号密码推送**：GitHub 已不支持用登录密码做 `git push`；且密码不应发给任何人或写入命令行。请先到 GitHub **修改密码**（若曾在聊天中泄露过）。
+2. 在网页新建空仓库（例如 `TRG_SurgeryAdvisor`），**不要**勾选自动添加 README（避免首次推送冲突）。
+3. 在本项目根目录执行（将 `WHX0259/仓库名` 换成你的）：
+   ```bash
+   cd /data16t/huixuan/code/TRG_SurgeryAdvisor
+   git remote add origin https://github.com/WHX0259/TRG_SurgeryAdvisor.git
+   git push -u origin main
+   ```
+4. 提示输入密码时，应使用 **Personal Access Token（PAT）**：GitHub → Settings → Developer settings → Personal access tokens，勾选 `repo` 权限，生成后把令牌当密码粘贴（仅显示一次，请自行保存）。
+5. 本仓库 `.gitignore` 已忽略 `config.yaml`、`*.onnx`、权重等，避免把本机路径和大文件推上公开库；协作者复制 `config.example.yaml` 为 `config.yaml` 即可。

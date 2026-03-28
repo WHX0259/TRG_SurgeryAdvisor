@@ -1,0 +1,15 @@
+# 若已用 conda 环境（例如 nnUNet）且其中已装好 torch/torchvision，可不再用 pip 装下面两行，避免版本被覆盖：
+#   conda activate nnUNet
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.22
+Pillow>=9.0
+gradio>=4.0
+PyYAML>=6.0
+opencv-python-headless>=4.8.0
+
+# 可选：无 PyTorch 部署时改用 onnxruntime（需先在本机导出 ONNX，见 docs/ARCHITECTURE.md）
+# 导出 ONNX / 量化（在 nnUNet 等已有 torch 的环境中）:
+# pip install onnx onnxruntime
+#
+# 仅 CPU 推理机（无 torch）见 requirements-onnx-runtime.txt

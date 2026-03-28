@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+outputs/
+*.tar
+.DS_Store
+
+# 含本机绝对路径与权重位置，公开仓库勿提交（保留 config.example.yaml 即可）
+config.yaml
+onnx_export/
+*.onnx
+*.pth
+*.pth.tar
+dist/
+build/

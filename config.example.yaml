@@ -1,0 +1,40 @@
+# 复制为 config.yaml 后修改路径（仓库内已提供一份 config.yaml 可直接编辑）
+
+pdcc_root: "/data16t/huixuan/code/PDCC"
+checkpoint_path: "/data16t/huixuan/code/Multi_Modal_MoE/lib/output/ImageBaseClusterDistancePlusGatingModel/num_expert3/mixed/1/var/Interaction_0.2/lfv_0.0/sim_0.02/dis_0.02/train/ImageBaseClusterDistancePlusGatingModel/model_best.pth.tar"
+
+# 训练输出目录下的 config.json：自动同步 img_size（常见为 224），与 Multi_Modal_MoE/CMEL 主程序参数一致
+training_config_json: "/data16t/huixuan/code/Multi_Modal_MoE/lib/output/ImageBaseClusterDistancePlusGatingModel/num_expert3/mixed/1/var/Interaction_0.2/lfv_0.0/sim_0.02/dis_0.02/config.json"
+sync_image_size_from_training_json: true
+
+# 当 sync 为 false 时生效。纯 PDCC+CEUS 数据集默认常为 256，请与真实训练脚本一致
+image_size: 224
+
+# 模型构造须与训练一致（见同目录 config.json）
+num_experts: 3
+num_class: 2
+num_iterations: 20
+cluster_init_type: "kmeans++"
+k: 8
+# 1=单通道灰度（PDCC CEUS 常见）；3=RGB（与权重 conv1 [64,3,3,3] 一致）
+in_chan: 3
+use_cmel_normalize: true
+
+# 输入模式：
+# - "masked"  : 灰度原图 × 掩膜（二值/灰度归一化），符合「目标区域增强」叙述
+# - "full"    : 仅整幅灰度图，与当前 PDCC/main.py 中 model(batch['image']) 行为一致
+input_mode: "masked"
+
+# 类别语义（请按你课题标签定义自行修改，用于界面文案）
+class_names:
+  - "类别0（参考：非手术/观察）"
+  - "类别1（参考：建议手术）"
+
+positive_class_index: 1
+surgery_recommend_if_positive_prob_above: 0.5
+
+device: null  # null = 自动 cuda/cpu
+
+# backend: onnx
+# onnx_model_path: "/path/to/trg_imagebase_infer_int8.onnx"
+# onnx_providers: ["CPUExecutionProvider"]

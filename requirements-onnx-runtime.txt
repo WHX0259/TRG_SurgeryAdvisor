@@ -1,0 +1,8 @@
+# 仅推理机（已用 export_onnx.py 导出模型后）：无需 PyTorch / CUDA
+gradio>=4.0
+PyYAML>=6.0
+opencv-python-headless>=4.8.0
+Pillow>=9.0
+numpy>=1.22
+onnx>=1.14
+onnxruntime>=1.16
